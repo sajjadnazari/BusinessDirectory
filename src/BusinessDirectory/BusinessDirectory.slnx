@@ -11,4 +11,5 @@
   <Folder Name="/Presentation/">
     <Project Path="Presentation/BusinessDirectory.API/BusinessDirectory.API.csproj" />
   </Folder>
+  <Project Path="../../../Contracts/src/Contracts/Contracts/Contracts.csproj" />
 </Solution>

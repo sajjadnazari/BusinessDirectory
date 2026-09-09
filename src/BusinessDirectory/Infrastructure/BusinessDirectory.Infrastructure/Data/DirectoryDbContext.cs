@@ -1,8 +1,10 @@
 ﻿using BusinessDirectory.Domain.Common;
 using BusinessDirectory.Domain.Entities;
+using MassTransit;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+
 
 namespace BusinessDirectory.Infrastructure.Data
 {
@@ -25,6 +27,9 @@ namespace BusinessDirectory.Infrastructure.Data
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DirectoryDbContext).Assembly);
 
             base.OnModelCreating(modelBuilder);
+            modelBuilder.AddInboxStateEntity();
+            modelBuilder.AddOutboxMessageEntity();
+            modelBuilder.AddOutboxStateEntity();
         }
 
         // بازنویسی متد SaveChangesAsync برای اجرای جادوی Domain Events

@@ -1,6 +1,5 @@
 using BusinessDirectory.Application.Features.Businesses.Commands.CreateBusiness;
 using BusinessDirectory.Infrastructure;
-using MassTransit;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,16 +13,7 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(CreateBusinessCommand).Assembly));
 
-builder.Services.AddMassTransit(x =>
-{
-    x.UsingRabbitMq((context, cfg) =>
-    {
-        cfg.Host("localhost", "/", h => {
-            h.Username("guest");
-            h.Password("guest");
-        });
-    });
-});
+
 
 var app = builder.Build();
 
