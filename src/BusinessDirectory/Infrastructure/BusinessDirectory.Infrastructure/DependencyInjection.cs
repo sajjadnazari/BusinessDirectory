@@ -1,5 +1,6 @@
 ﻿using BusinessDirectory.Application.Interfaces;
 using BusinessDirectory.Infrastructure.Data;
+using BusinessDirectory.Infrastructure.Messaging;
 using BusinessDirectory.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +21,8 @@ namespace BusinessDirectory.Infrastructure
             // ۲. تزریق Repository را اینجا انجام می‌دهیم
             // چون این فایل داخل خود لایه Infrastructure است، کلاس internal را به راحتی می‌بیند!
             services.AddScoped<IBusinessRepository, BusinessRepository>();
-
+            // اضافه کردن آداپتور پیام‌رسان
+            services.AddScoped<IMessageBus, EventBus>();
             return services;
         }
     }
